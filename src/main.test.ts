@@ -1,4 +1,8 @@
-import { createPlateau } from "./main";
+import { Plateau } from "./plateau";
+import { Rover } from "./rover";
+import { RoverInstruction } from "./rover";
+import { toRoverInstruction } from "./rover";
+
 
 describe("To check if plateau is created with the given measurements" , () => {
     //Arrange
