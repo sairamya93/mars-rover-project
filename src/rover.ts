@@ -1,4 +1,5 @@
 import { Plateau } from "./plateau";
+import { isInstruction } from "./main";
 
 type DIRECTION = "N" | "S" | "E" | "W";
 
@@ -42,7 +43,39 @@ export class Rover {
     validatePosition = (): boolean => {
       return this.x_Ordinate <= this.grid.width && this.x_Ordinate >= 0 && this.y_Ordinate <= this.grid.height && this.y_Ordinate >= 0 ? true : false
     };
-  
+    
+    //Function to check if the given string instruction contains only a sequence of L,R and M
+    validateInstruction = (instructionsToRover: string) => {
+        if(isInstruction(instructionsToRover))
+        this.executeRoverInstruction(instructionsToRover);
+      else
+        throw "Instructions should contain only L,R,M (Left,Right and Move Forward)"
+    }
+    
+    //Function to direct the rover to turn left,turn right or move forward
+    executeRoverInstruction = (instruction : 'L' | 'R' | 'M') => {
+       
+       const instructionsArray=instruction.split('')      //Creating an array of characters from the sequence of instructions  
+       for(let i=0;i< instructionsArray.length;i++)       //Looping through each element to validate the position first and then moving
+       { 
+         if(this.validatePosition())
+         {
+          const instruction = toRoverInstruction(instructionsArray[i]); //converting each string element to a possible RoverInstruction i.e L,R,M if not throw error
+          if (instruction === null) {
+            console.log('Invalid instruction');
+            throw "Not a valid Rover instruction"
+           } 
+          else {           
+           this.moveRover(instruction);     
+           }  
+         }
+         else
+          throw "Rover's attempting to go beyond the grid boundary"
+       }
+     //const someInstruction = getInstruction(); // returns a string
+         
+    }
+
     //Function to move the Rover on the gird with the given instructions
     moveRover = (instruction: RoverInstruction) => {
       switch (instruction) {
@@ -99,7 +132,7 @@ export class Rover {
     //If not we throw an error that the rover cannot move forward in that direction
     moveForward = (x_ord: number,y_ord: number,direction: DIRECTION) => {
       switch (direction) {
-        case "N":
+        case "N":          
           if (y_ord + 1 > this.grid.height)
             throw "Rover has reached the North plateau boundary and cannot move forward";
           this.y_Ordinate = y_ord + 1;
