@@ -137,6 +137,20 @@ describe("To check if Rover follows a sequence of instructions in lower case cha
     });    
 });
 
+describe("To check if Rover follows a sequence of instructions but goes beyond Grid's boundary" , () => {
+    //Arrange
+    const plateau_1: Plateau = { width: 200, height: 100 };
+    const Rover_1 = new Rover(plateau_1, 198, 50, "N");
+    const instructionsToRover = 'RMMMMM'  
+    
+    //Act and Assert
+    test("test for error message when Rover moves beyond grid's boundary" , () => {
+        expect(() => {
+            Rover_1.validateInstruction(instructionsToRover);
+        }).toThrow("Rover has reached the east plateau boundary and cannot move forward")
+    });     
+});
+
 describe("To test Rover moveForward function when it goes beyond Grid's boundary " , () => {
     //Arrange
     const plateau_1: Plateau = { width: 5, height: 5 };
@@ -207,4 +221,77 @@ describe("To check if error message is thrown if null value in instructions" , (
             Rover_1.validateInstruction(instructionsToRover);
         }).toThrow("Instructions should contain only L,R,M (Left,Right and Move Forward)")
     });    
+});
+
+describe("To verify rover's position on the grid" , () => {
+    //Arrange
+    const plateau_1: Plateau = { width: 10, height: 8 };
+    const Rover_1 = new Rover(plateau_1, 3, 3, "E");
+    const expectedResult=[3,3,'E']
+    
+    //Act
+    const actualResult = Rover_1.roverPosition()
+        
+    //Assert
+    test("test to verify rover's position on the grid" , () => {
+        expect(actualResult).toStrictEqual(expectedResult)
+    });    
+});
+
+describe("To check if Rover turns left and direction is changed" , () => {
+    //Arrange
+    const plateau_1: Plateau = { width: 5, height: 5 };
+    const Rover_1 = new Rover(plateau_1, 4, 3, "N");
+    const Rover_2 = new Rover(plateau_1, 4, 3, "S");
+    const Rover_3 = new Rover(plateau_1, 4, 3, "E");
+    const Rover_4 = new Rover(plateau_1, 4, 3, "W");
+    
+    //Act
+    Rover_1.turnLeft('N')   
+    Rover_2.turnLeft('S') 
+    Rover_3.turnLeft('E') 
+    Rover_4.turnLeft('W')  
+        
+    //Assert
+    test("test to verify rover turns left North to West" , () => {
+        expect(Rover_1.roverPosition()).toStrictEqual([4,3,'W'])
+    });    
+    test("test to verify rover turns left South to East" , () => {
+        expect(Rover_2.roverPosition()).toStrictEqual([4,3,'E'])
+    });
+    test("test to verify rover turns left East to North" , () => {
+        expect(Rover_3.roverPosition()).toStrictEqual([4,3,'N'])
+    });
+    test("test to verify rover turns left West to South" , () => {
+        expect(Rover_4.roverPosition()).toStrictEqual([4,3,'S'])
+    });
+});
+
+describe("To check if Rover turns right and direction is changed" , () => {
+    //Arrange
+    const plateau_1: Plateau = { width: 5, height: 5 };
+    const Rover_1 = new Rover(plateau_1, 3, 3, "N");
+    const Rover_2 = new Rover(plateau_1, 3, 3, "S");
+    const Rover_3 = new Rover(plateau_1, 3, 3, "E");
+    const Rover_4 = new Rover(plateau_1, 3, 3, "W");
+    
+    //Act
+    Rover_1.turnRight('N') 
+    Rover_2.turnRight('S') 
+    Rover_3.turnRight('E') 
+    Rover_4.turnRight('W')  
+        
+    //Assert
+    test("test to verify rover turns right North to East" , () => {
+        expect(Rover_1.roverPosition()).toStrictEqual([3,3,'E'])
+    });    
+    test("test to verify rover turns right South to West" , () => {
+        expect(Rover_2.roverPosition()).toStrictEqual([3,3,'W'])
+    });
+    test("test to verify rover turns right East to South" , () => {
+        expect(Rover_3.roverPosition()).toStrictEqual([3,3,'S'])
+    });
+    test("test to verify rover turns right West to North" , () => {
+        expect(Rover_4.roverPosition()).toStrictEqual([3,3,'N'])
+    });
 });
