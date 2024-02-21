@@ -11,14 +11,14 @@ Mars Rover project is a rover navigation system for exploring the Maritan surfac
 - Project structure
 - Future enhancements
 
-## Features
+### Features
 
 - Control the rover on the martian plateau (A square or rectangle grid)
 - Turn the rover left and right
 - Move the rover forward
 - Retrieve the rover's co-ordinates on the grid
 
-## Environment set up
+### Environment set up
 
 To install and run the project locally,follow the below steps:
 
@@ -28,7 +28,7 @@ To install and run the project locally,follow the below steps:
 ```cd mars-rover-project```
 3. Ensure environment is set up for executing TypeScript files with Node.js
 
-## Project structure
+### Project structure
 
 The project follows TDD approach. It consists of a src folder that holds the below ts files:
 
@@ -37,12 +37,12 @@ The project follows TDD approach. It consists of a src folder that holds the bel
 - rover.ts : Consists of Rover class with its properties and methods to implement its navigation on the grid
 - rover.test.ts : Consists of all the unit test cases following the AAA format
 
-## Test
+### Test
 
 Execute the below command in the terminal to execute all the test cases:
 ```npm test```
 
-## Future Enhancements
+### Future Enhancements
 
 - Can implement multiple rovers on a grid
 - Detecting obstacles or collisions when there are more rovers on the grid
