@@ -1,11 +1,9 @@
 # Mars Rover Project 
-![small rover](/src/rover.gif)
-
 Welcome to the Mars Rover Project!
 
 Mars Rover project is a rover navigation system for exploring the Maritan surface.It allows you to control the rover over a given surface(Plateau) using a series of commands.It is implemented using TypeScript.
 
-![A sample picture of a rover on Mars surface](/src/mars-rover_main.jpg)
+![A sample picture of a rover](/src/rover.gif)
 
 ## Table of Contents
 - Features
