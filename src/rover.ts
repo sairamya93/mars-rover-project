@@ -1,4 +1,4 @@
-import { Plateau } from "./plateau.ts";
+import { Plateau } from "./plateau";
 import { isInstruction } from "./main";
 
 type DIRECTION = "N" | "S" | "E" | "W";
@@ -133,6 +133,7 @@ export class Rover {
   //Function to move the rover one unit forward
   //Before moving the rover, we check if the rover move falls within the area of the grid it is placed on
   //If not we throw an error that the rover cannot move forward in that direction
+  
   moveForward = (x_ord: number, y_ord: number, direction: DIRECTION) => {
     switch (direction) {
       case "N":
