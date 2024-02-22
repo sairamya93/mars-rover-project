@@ -1,4 +1,4 @@
-import { Plateau } from "./plateau";
+import { Plateau } from "./plateau.ts";
 import { isInstruction } from "./main";
 
 type DIRECTION = "N" | "S" | "E" | "W";

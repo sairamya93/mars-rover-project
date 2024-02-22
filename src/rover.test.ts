@@ -1,4 +1,4 @@
-import { Plateau } from "./plateau";
+import { Plateau } from "./plateau.ts";
 import { Rover } from "./rover";
 import { isInstruction } from "./main";
 
